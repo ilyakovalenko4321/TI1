@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberCrypt v3 — Fixed Edition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="cyber-container">
+    <header>
+        <h1>CRYPTO TERMINAL</h1>
+        <p style="color: var(--text-secondary); margin: 5px 0 0 0;">Protocol: Variant 3 • Russian Language Only</p>
+    </header>
+
+    <div class="dashboard">
+        <div class="control-side">
+            <div class="glass-panel" style="margin-bottom: 25px;">
+                <label>Алгоритм системы</label>
+                <select id="algo-type">
+                    <option value="columnar">Столбцовая перестановка</option>
+                    <option value="autokey">Виженер (Автоматический ключ)</option>
+                </select>
+            </div>
+
+            <div class="glass-panel">
+                <label>Мастер-ключ (RU)</label>
+                <input type="text" id="key-input" placeholder="Введите слово...">
+
+                <button class="btn btn-outline" onclick="document.getElementById('key-file-hidden').click()">
+                    📂 Загрузить файл ключа
+                </button>
+                <input type="file" id="key-file-hidden" accept=".txt">
+                <div class="status-tag" id="key-status">Ожидание ключа...</div>
+
+                <div style="margin-top: 30px;"></div>
+
+                <label>Информационный поток</label>
+                <textarea id="main-input" placeholder="Введите исходный текст здесь..."></textarea>
+
+                <button class="btn btn-outline" onclick="document.getElementById('text-file-hidden').click()">
+                    📂 Загрузить текстовый файл
+                </button>
+                <input type="file" id="text-file-hidden" accept=".txt">
+                <div class="status-tag" id="text-status">Файл не выбран</div>
+            </div>
+        </div>
+
+        <div class="output-side">
+            <div class="glass-panel" style="height: 100%; display: flex; flex-direction: column;">
+                <label>Выходной терминал</label>
+                <textarea id="main-output" readonly placeholder="Результат будет выведен здесь..."></textarea>
+
+                <button class="btn btn-success" id="export-btn">
+                    💾 Экспортировать в .txt
+                </button>
+
+                <div style="margin-top: 25px; padding: 20px; border-radius: 16px; background: rgba(0,0,0,0.3); font-size: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="color: var(--accent-neon); font-weight: bold;">[DEBUG INFO]</span><br>
+                    <span style="color: var(--text-secondary);">
+                            Алфавит: А-Я (33 буквы).<br>
+                            Игнорирование: цифры, спецсимволы, латиница.<br>
+                            Автоключ: использует открытый текст для расширения ключа.
+                        </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-row">
+        <button class="btn btn-primary" id="encrypt-btn">
+            <span>🔒 Зашифровать</span>
+        </button>
+        <button class="btn btn-primary" id="decrypt-btn" style="background: #4338ca; color: #fff;">
+            <span>🔓 Расшифровать</span>
+        </button>
+    </div>
+</div>
+
+<!-- Подключаем JavaScript модули -->
+<script src="js/constants.js"></script>
+<script src="js/columnar.js"></script>
+<script src="js/autokey.js"></script>
+<script src="js/fileHandlers.js"></script>
+<script src="js/uiController.js"></script>
+</body>
+</html>
